@@ -51,7 +51,7 @@ echo " ###################################################################"
 
 
 echo "Delete https&http "
-cat $1LiveSubDomian | sed -e 's/^http:\/\///g' -e 's/^https:\/\///g' | tee $1LiveSubDomianWithouthttps
+cat $1LiveSubDomian | sed -e 's/^http:\/\///g' -e 's/^https:\/\///g' >> $1LiveSubDomianWithouthttps
 
 echo " ###################################################################" 
 
