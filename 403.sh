@@ -90,7 +90,7 @@ sleep 1
 ffuf -w 403_url_payloads.txt:FUZZ -w $1403LiveSubDomianwaybackurls:urls   -u urls/FUZZ  -t 15 -fc 403,401,400
 
 
-# while read line; do  ffuf -w 403_url_payloads.txt:FUZZ -u $line/FUZZ  -fc 403,401,400 ; done < $1403LiveSubDomianwaybackurls
+# while read line; do  ffuf -w 403_url_payloads.txt:FUZZ -u $line/FUZZ  -fc 403,401,400,301,302 ; done < $1403LiveSubDomianwaybackurls
 
 echo " ###################################################################" 
 echo " Done . . ..   "
