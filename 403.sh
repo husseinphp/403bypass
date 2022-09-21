@@ -76,11 +76,12 @@ echo " ###################################################################"
 sleep 1
 echo " get Only 403 urls"
 echo " ###################################################################" 
-httpx -list $1LiveSubDomianwaybackurlspure -mc 403 -o $1403LiveSubDomianwaybackurls
+httpx -list $1LiveSubDomianwaybackurlspure -silent  -p 80,443,8080,8443 -mc 403,401 -o $1403LiveSubDomianwaybackurls
 
 echo " 403 urls .."
 
 echo "cat $1403LiveSubDomianwaybackurls | wc "
+cat $1403LiveSubDomianwaybackurls | wc 
 echo " ###################################################################" 
 
 echo " Run FuFF To Bypass 403 .. "
