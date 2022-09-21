@@ -63,8 +63,8 @@ while read line; do  curl -s "https://web.archive.org/cdx/search/cdx?url=*.$line
 echo " delete jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|pdf|svg|txt|js .."
 
 echo " ###################################################################" 
-
-cat $1LiveSubDomianwaybackurls | egrep -v ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|pdf|svg|txt|js|png)" | tee $1LiveSubDomianwaybackurlspure
+sleep 1
+cat $1LiveSubDomianwaybackurls | egrep -v ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|pdf|svg|txt|js)" | tee $1LiveSubDomianwaybackurlspure
 
 echo " ###################################################################" 
 
@@ -73,7 +73,7 @@ echo " ###################################################################"
 
 echo " cat $1LiveSubDomianwaybackurlspure | wc "
 echo " ###################################################################" 
-
+sleep 1
 echo " get Only 403 urls"
 echo " ###################################################################" 
 httpx -list $1LiveSubDomianwaybackurlspure -mc 403 | tee $1403LiveSubDomianwaybackurls
@@ -84,8 +84,12 @@ eco "cat $1403LiveSubDomianwaybackurls | wc "
 echo " ###################################################################" 
 
 echo " Run FuFF To Bypass 403 .. "
+alias ffuf='docker run -it --rm -w /data -v $(pwd):/data trickest/ffuf'
+sleep 1
+ffuf -w 403_url_payloads.txt:FUZZ -w $1403LiveSubDomianwaybackurls:urls   -u urls/FUZZ  -fc 403,401,400
 
-while read line; do  ffuf -w 403_url_payloads.txt:FUZZ -u $line/FUZZ  -fc 403,401,400 ; done < $1403LiveSubDomianwaybackurls
+
+# while read line; do  ffuf -w 403_url_payloads.txt:FUZZ -u $line/FUZZ  -fc 403,401,400 ; done < $1403LiveSubDomianwaybackurls
 
 echo " ###################################################################" 
 echo " Done . . ..   "
