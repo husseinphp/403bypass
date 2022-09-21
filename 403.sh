@@ -64,7 +64,7 @@ echo " delete jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|pdf|svg|txt|js ..
 
 echo " ###################################################################" 
 sleep 1
-cat $1LiveSubDomianwaybackurls | egrep -v ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|pdf|svg|txt|js)" | tee $1LiveSubDomianwaybackurlspure
+cat $1LiveSubDomianwaybackurls | egrep -v ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|pdf|svg|txt|js)" >> $1LiveSubDomianwaybackurlspure
 
 echo " ###################################################################" 
 
@@ -80,13 +80,13 @@ httpx -list $1LiveSubDomianwaybackurlspure -mc 403 | tee $1403LiveSubDomianwayba
 
 echo " 403 urls .."
 
-eco "cat $1403LiveSubDomianwaybackurls | wc "
+echo "cat $1403LiveSubDomianwaybackurls | wc "
 echo " ###################################################################" 
 
 echo " Run FuFF To Bypass 403 .. "
 alias ffuf='docker run -it --rm -w /data -v $(pwd):/data trickest/ffuf'
 sleep 1
-ffuf -w 403_url_payloads.txt:FUZZ -w $1403LiveSubDomianwaybackurls:urls   -u urls/FUZZ  -fc 403,401,400
+ffuf -w 403_url_payloads.txt:FUZZ -w $1403LiveSubDomianwaybackurls:urls   -u urls/FUZZ  -t 15 -fc 403,401,400
 
 
 # while read line; do  ffuf -w 403_url_payloads.txt:FUZZ -u $line/FUZZ  -fc 403,401,400 ; done < $1403LiveSubDomianwaybackurls
