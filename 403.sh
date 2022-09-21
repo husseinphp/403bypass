@@ -57,7 +57,7 @@ echo " ###################################################################"
 
 
 echo "run webarchive ...."
-while read line; do  curl -s "https://web.archive.org/cdx/search/cdx?url=*.$line&output=text&fl=original&collapse=urlkey" ; done < $1LiveSubDomianWithouthttps | tee $1LiveSubDomianwaybackurls
+while read line; do  curl -s "https://web.archive.org/cdx/search/cdx?url=*.$line&output=text&fl=original&collapse=urlkey" ; done < $1LiveSubDomianWithouthttps >> $1LiveSubDomianwaybackurls
 
 
 echo " delete jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|pdf|svg|txt|js .."
