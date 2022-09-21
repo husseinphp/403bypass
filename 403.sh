@@ -76,7 +76,7 @@ echo " ###################################################################"
 sleep 1
 echo " get Only 403 urls"
 echo " ###################################################################" 
-httpx -list $1LiveSubDomianwaybackurlspure -mc 403 | tee $1403LiveSubDomianwaybackurls
+httpx -list $1LiveSubDomianwaybackurlspure -mc 403 -o $1403LiveSubDomianwaybackurls
 
 echo " 403 urls .."
 
