@@ -6,7 +6,6 @@ docker pull projectdiscovery/subfinder
 #alias subfinder
 alias subfinder='docker run -it --rm -w /data -v $(pwd):/data projectdiscovery/subfinder'
 
-
 #install httpx
 docker pull projectdiscovery/httpx
 
